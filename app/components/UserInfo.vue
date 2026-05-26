@@ -22,25 +22,25 @@ const retosData = [
     reto: "5000 USD si llego a :master: este año",
     castigo: null,
     usuario: "snowbling",
-    completado: false
+    status: "pending"
   },
   {
     reto: "1000 USD si llego a :diamond: IV antes del 23 de Mayo",
     castigo: "Jugar SC2 12 horas",
     usuario: "snowbling",
-    completado: false
+    status: "failed"
   },
   {
     reto: "600 USD si llego a :diamond: III 50 LP antes del 15 de Junio",
     castigo: "Stream IRL Jimenita",
     usuario: "snuffygoat",
-    completado: false
+    status: "pending"
   },
   {
     reto: "50 subs si llego a :emerald: antes del 6 de Mayo",
     castigo: "Me pinto el cabello",
     usuario: "Hanamichix",
-    completado: true
+    status: "completed"
   }
 ];
 
@@ -58,7 +58,7 @@ const retosColumns = [
     header: "Usuario"
   },
   {
-    accessorKey: "completado",
+    accessorKey: "status",
     header: ""
   }
 ];
@@ -151,16 +151,17 @@ const formatReto = (text: string) => {
   >
     <template #reto-cell="{ row }">
       <!-- eslint-disable-next-line vue/no-v-html -->
-      <p :class="{ 'line-through': row.original.completado }" v-html="formatReto(row.original.reto)" />
+      <p :class="{ 'line-through': row.original.status !== 'pending' }" v-html="formatReto(row.original.reto)" />
     </template>
     <template #castigo-cell="{ row }">
-      <p :class="{ 'line-through': row.original.completado }">{{ row.original.castigo }}</p>
+      <p :class="{ 'line-through': row.original.status !== 'pending' }">{{ row.original.castigo }}</p>
     </template>
     <template #usuario-cell="{ row }">
       <NuxtLink v-if="row.original.usuario" class="hover:underline" :to="`https://www.twitch.tv/${row.original.usuario}`">{{ row.original.usuario }}</NuxtLink>
     </template>
-    <template #completado-cell="{ row }">
-      <span v-if="row.original.completado" class="text-green-500 font-bold">✅</span>
+    <template #status-cell="{ row }">
+      <span v-if="row.original.status === 'completed'" class="text-green-500 font-bold">✅</span>
+      <span v-else-if="row.original.status === 'failed'" class="text-red-500 font-bold">❌</span>
       <span v-else />
     </template>
   </UTable>
