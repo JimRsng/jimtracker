@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "jimtracker",
-  "compatibility_date": "2025-08-19",
+  "compatibility_date": "2026-05-30",
   "main": ".output/server/index.mjs",
   "compatibility_flags": ["nodejs_compat"],
   "observability": { "enabled": true },
