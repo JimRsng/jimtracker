@@ -49,7 +49,7 @@ declare global {
     lp?: number | null;
   }
 
-  interface MostPlayed {
+  interface ChampionStats {
     champion_id: number;
     count: number;
     wins: number;
@@ -64,7 +64,8 @@ declare global {
     history?: HistoryData[];
     highest?: RankInfo;
     lowest?: RankInfo;
-    mostPlayed?: MostPlayed[];
+    mostPlayed?: ChampionStats[];
+    bestWinrate?: ChampionStats[];
     streak: number;
   }
 

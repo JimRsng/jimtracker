@@ -78,7 +78,7 @@ export const getDBInfo = async (options: { puuid: string, season: number, fullHi
   const matchesInDays = countResult?.count || 0;
   const dynamicLimit = Math.max(matchesInDays, historyGraphConfig.matchLimit);
 
-  const [history, highest, lowest, mostPlayed] = await Promise.all([
+  const [history, highest, lowest, mostPlayed, bestWinrate] = await Promise.all([
     // History
     db.select({
       match_id: tables.history.match_id,
@@ -198,6 +198,23 @@ export const getDBInfo = async (options: { puuid: string, season: number, fullHi
       .having(gte(sql`count`, 1)) // Al menos 1 partida jugada con el campeón
       .orderBy(desc(sql`count`), desc(sql`SUM(CASE WHEN ${tables.history.result} = 1 THEN 1 ELSE 0 END)`), desc(sql`(AVG(${tables.history.kills}) + AVG(${tables.history.assists})) / CASE WHEN AVG(${tables.history.deaths}) = 0 THEN 1 ELSE AVG(${tables.history.deaths}) END`))
       .limit(12)
+      .all(),
+
+    // Most Winrate champion
+    db.select({
+      champion_id: tables.history.champion_id,
+      count: sql<number>`COUNT(${tables.history.match_id}) as count`,
+      wins: sql<number>`SUM(CASE WHEN ${tables.history.result} = 1 THEN 1 ELSE 0 END)`,
+      losses: sql<number>`SUM(CASE WHEN ${tables.history.result} = 0 THEN 1 ELSE 0 END)`,
+      kills: sql<number>`AVG(${tables.history.kills})`,
+      deaths: sql<number>`AVG(${tables.history.deaths})`,
+      assists: sql<number>`AVG(${tables.history.assists})`
+    }).from(tables.history)
+      .where(and(eq(tables.history.puuid, puuid), eq(tables.history.season, season), eq(tables.history.is_remake, 0)))
+      .groupBy(tables.history.champion_id)
+      .having(gte(sql`count`, 5)) // Al menos 5 partida jugada con el campeón
+      .orderBy(desc(sql`AVG(CASE WHEN ${tables.history.result} = 1 THEN 1.0 ELSE 0.0 END)`))
+      .limit(12)
       .all()
   ]);
 
@@ -208,6 +225,7 @@ export const getDBInfo = async (options: { puuid: string, season: number, fullHi
     highest,
     lowest,
     mostPlayed,
+    bestWinrate,
     streak
   };
 };
