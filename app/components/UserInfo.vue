@@ -31,7 +31,7 @@ const retosData = [
     status: "failed"
   },
   {
-    reto: "600 USD si llego a :diamond: III 50 LP antes del 15 de Junio",
+    reto: "600 USD si llego a :diamond: III 50 LP antes del 26 de Junio. Modificado por snuffygoat.",
     castigo: "Stream IRL Jimenita",
     usuario: "snuffygoat",
     status: "pending"
