@@ -52,7 +52,7 @@ const data = ref([
         <UTable
           :data="data"
           :ui="{
-            td: 'p-2 text-neutral-300 text-base',
+            td: 'p-2 text-neutral-300 text-base whitespace-normal',
           }"
         />
       </div>
