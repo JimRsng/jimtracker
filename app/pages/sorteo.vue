@@ -2,35 +2,35 @@
 const data = ref([
   {
     tipo: "Sub tier 1",
-    chances: "1 chance de ganar."
+    oportunidad: "1 chance de ganar."
   },
   {
     tipo: "Sub tier 2",
-    chances: "4 chances de ganar."
+    oportunidad: "4 oportunidades de ganar."
   },
   {
     tipo: "Sub tier 3",
-    chances: "9 chances de ganar."
+    oportunidad: "9 oportunidades de ganar."
   },
   {
     tipo: "Canjeo puntos (500.000)",
-    chances: "máximo 1 por persona = 1 chance de ganar."
+    oportunidad: "máximo 1 por persona = 1 oportunidad de ganar."
   },
   {
-    tipo: "Donadores de subs (1 sub)",
-    chances: "máximo 1 por persona = 1 chance de ganar."
+    tipo: "Donadores de subs",
+    oportunidad: "Tier 1 = 1 oportunidad de ganar.\nTier 2 = 4 oportunidades de ganar.\nTier 3 = 9 oportunidades de ganar."
   },
   {
     tipo: "Donadores de bits (1000 bits)",
-    chances: "1 chance de ganar."
+    oportunidad: "1 oportunidad de ganar."
   },
   {
     tipo: "Donadores directos (10 USD)",
-    chances: "1 chance de ganar."
+    oportunidad: "1 oportunidad de ganar."
   },
   {
     tipo: "Los primos (60 meses o más suscritos)",
-    chances: "2 chances de ganar."
+    oportunidad: "2 oportunidades de ganar."
   }
 ]);
 </script>
@@ -52,7 +52,7 @@ const data = ref([
         <UTable
           :data="data"
           :ui="{
-            td: 'p-2 text-neutral-300 text-base whitespace-normal',
+            td: 'p-2 text-neutral-300 text-base whitespace-pre-wrap',
           }"
         />
       </div>
