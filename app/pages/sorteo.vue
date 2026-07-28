@@ -2,7 +2,7 @@
 const data = ref([
   {
     tipo: "Sub tier 1",
-    oportunidad: "1 chance de ganar."
+    oportunidad: "1 oportunidad de ganar."
   },
   {
     tipo: "Sub tier 2",
