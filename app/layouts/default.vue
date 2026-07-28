@@ -4,6 +4,20 @@ import { useTimeAgoIntl } from "@vueuse/core";
 
 const pages: NavigationMenuItem[] = [
   {
+    icon: "lucide:house",
+    label: "",
+    to: "/"
+  },
+  {
+    label: "SORTEO",
+    icon: "i-lucide:gift",
+    ui: {
+      link: "before:bg-yellow-500 hover:before:bg-yellow-400 text-neutral-900 hover:text-black data-active:before:bg-yellow-500 data-active:hover:before:bg-yellow-400",
+      linkLeadingIcon: "text-black group-hover:text-black"
+    },
+    to: "/sorteo"
+  },
+  {
     slot: "tracker" as const,
     label: "Tracker",
     as: "span",
@@ -50,7 +64,8 @@ const pages: NavigationMenuItem[] = [
   },
   {
     label: "Comunidad",
-    to: "https://comunidad.jimtracker.com"
+    to: "https://comunidad.jimtracker.com",
+    target: "_blank"
   }
 ];
 
@@ -83,12 +98,11 @@ const timeAgo = useTimeAgoIntl(buildInfo.time, {
         color="neutral"
         :ui="{
           list: 'gap-2',
-          link: 'text-md hover:before:bg-accented/50 data-active:before:bg-accented/75 before:border before:border-accented/50 before:bg-elevated/20 p-0',
+          link: 'text-md hover:before:bg-accented/50 data-active:before:bg-accented/75 before:border before:border-accented/50 before:bg-elevated/20 px-3 py-1',
+          linkLabel: 'my-0.5',
+          linkLeadingIcon: 'my-1',
         }"
       >
-        <template #item="{ item }">
-          <span class="text-md px-3 py-1 w-full h-full">{{ item.label }}</span>
-        </template>
         <template
           v-for="page in pages.filter((p) => p.slot)"
           :key="page.slot"
@@ -101,7 +115,7 @@ const timeAgo = useTimeAgoIntl(buildInfo.time, {
               variant="link"
               color="neutral"
               :ui="{
-                base: 'text-md px-3 py-1 w-full h-full',
+                base: 'text-md px-0 py-0 w-full h-full my-0.5',
               }"
             />
           </UDropdownMenu>
@@ -111,6 +125,7 @@ const timeAgo = useTimeAgoIntl(buildInfo.time, {
         <UNavigationMenu
           :items="pages.map(page => ({ ...page, children: page.items }))"
           orientation="vertical"
+          color="neutral"
           class="-mx-2.5"
         />
       </template>
