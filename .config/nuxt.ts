@@ -89,8 +89,7 @@ export default defineNuxtConfig({
     "/season/2025/soloboom": { prerender: true },
     "/season/2025": { prerender: true },
     "/season/2026/reto-one-by-one": { prerender: true },
-    "/season/2026/reto-nami": { prerender: true },
-    "/sorteo": { prerender: true }
+    "/season/2026/reto-nami": { prerender: true }
   },
 
   features: {
@@ -112,7 +111,7 @@ export default defineNuxtConfig({
     cloudflare: {
       pages: {
         routes: {
-          exclude: ["/images/*", "/videos/*"]
+          exclude: ["/images/*"]
         }
       }
     },
