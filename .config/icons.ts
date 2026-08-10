@@ -29,5 +29,7 @@ export default [
   "simple-icons:github",
   "ph:scissors",
   "lucide:copy-check",
-  "lucide:copy"
+  "lucide:copy",
+  "lucide:house",
+  "lucide:arrow-up-right"
 ];
