@@ -59,7 +59,7 @@ const retosColumns = [
   },
   {
     accessorKey: "status",
-    header: ""
+    header: " "
   }
 ];
 
