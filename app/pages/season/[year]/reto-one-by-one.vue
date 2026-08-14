@@ -183,7 +183,7 @@ function getChip (value: string) {
           <div class="flex flex-col flex-1">
             <div class="font-semibold text-muted text-sm">{{ champ.champion }}</div>
             <div class="text-xl font-bold">{{ champ.kda[0] }}/{{ champ.kda[1] }}/{{ champ.kda[2] }}</div>
-            <UPopover mode="hover">
+            <UPopover mode="hover" arrow>
               <UButton variant="link" class="p-0">
                 <div :class="['text-xs font-bold cursor-help', getKdaColor(champ.kda)]">{{ kdaRatio(champ.kda) }} KDA</div>
               </UButton>
@@ -195,7 +195,7 @@ function getChip (value: string) {
             </UPopover>
           </div>
           <div class="flex flex-col items-center border-l border-slate-400/40 py-6 px-6">
-            <UPopover mode="hover">
+            <UPopover mode="hover" arrow>
               <UButton variant="link" class="p-0">
                 <span :class="['text-2xl font-bold cursor-help', getBadgeInfo(champ.tries).textClass]">
                   {{ champ.tries }}

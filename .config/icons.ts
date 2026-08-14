@@ -31,5 +31,6 @@ export default [
   "lucide:copy-check",
   "lucide:copy",
   "lucide:house",
-  "lucide:arrow-up-right"
+  "lucide:arrow-up-right",
+  "lucide:users"
 ];

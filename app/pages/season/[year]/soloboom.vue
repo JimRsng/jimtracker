@@ -14,15 +14,17 @@ const { data } = await useFetch(`${apiPath}/api/info`, {
 });
 const { data: champions } = await useFetch(`${apiPath}/api/champions`);
 
+const title = `${SITE.name} | ${SITE.main}`;
+
 useSeoMeta({
-  title: SITE.title,
-  ogTitle: SITE.title,
+  title,
+  ogTitle: title,
   description: SITE.description,
   ogDescription: SITE.description,
   ogImage: `${SITE.url}/images/og-image.png`,
   twitterImage: `${SITE.url}/images/og-image.png`,
   twitterCard: "summary_large_image",
-  twitterTitle: SITE.title,
+  twitterTitle: title,
   twitterDescription: SITE.description
 });
 

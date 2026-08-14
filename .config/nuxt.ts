@@ -23,7 +23,7 @@ export default defineNuxtConfig({
     head: {
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1",
-      title: SITE.title,
+      title: `${SITE.name} | ${SITE.main}`,
       htmlAttrs: {
         lang: "es"
       },
@@ -42,7 +42,7 @@ export default defineNuxtConfig({
       meta: [
         { name: "robots", content: "index, follow" },
         { name: "apple-mobile-web-app-title", content: SITE.name },
-        { name: "apple-mobile-web-app-capable", content: SITE.name },
+        { name: "apple-mobile-web-app-capable", content: "yes" },
         { name: "application-name", content: SITE.name },
         { property: "og:site_name", content: SITE.name }
       ]
@@ -50,7 +50,7 @@ export default defineNuxtConfig({
   },
 
   css: [
-    "~/assets/css/main.css",
+    "~/assets/css/ui.tailwind.css",
     "~/assets/scss/app.scss"
   ],
 
@@ -62,9 +62,11 @@ export default defineNuxtConfig({
   },
 
   ui: {
+    fonts: true,
     colors: {
-      neutral: "neutral",
-      primary: "green"
+      neutral: "slate",
+      primary: "red",
+      secondary: "green"
     }
   },
 
@@ -147,6 +149,13 @@ export default defineNuxtConfig({
       autoInit: false,
       stylistic: true
     }
+  },
+
+  fonts: {
+    families: [
+      { name: "Bebas Neue", weights: [400], display: "swap" },
+      { name: "DM Sans", weights: [300, 400, 500, 600], display: "swap" }
+    ]
   },
 
   icon: {

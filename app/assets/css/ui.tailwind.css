@@ -1,0 +1,8 @@
+/* stylelint-disable scss/at-rule-no-unknown, custom-property-empty-line-before */
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+  --color-slate-800: #0D1117;
+  --color-slate-900: #080c10;
+}

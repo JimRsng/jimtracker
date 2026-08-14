@@ -1,64 +1,5 @@
 <script setup lang="ts">
-import type { DropdownMenuItem, NavigationMenuItem } from "@nuxt/ui";
 import { useTimeAgoIntl } from "@vueuse/core";
-
-const pages: NavigationMenuItem[] = [
-  {
-    icon: "lucide:house",
-    label: "",
-    to: "/"
-  },
-  {
-    slot: "tracker" as const,
-    label: "Tracker",
-    as: "span",
-    items: [
-      {
-        label: "2026",
-        to: "/"
-      },
-      {
-        label: "2025",
-        to: "/season/2025"
-      }
-    ] satisfies DropdownMenuItem[]
-  },
-  {
-    slot: "soloboom" as const,
-    label: "SoloBoom",
-    as: "span",
-    items: [
-      {
-        label: "2025",
-        to: "/season/2025/soloboom"
-      }
-    ] satisfies DropdownMenuItem[]
-  },
-  {
-    slot: "retos" as const,
-    label: "Retos",
-    as: "span",
-    items: [
-      {
-        label: "One by One",
-        to: "/season/2026/reto-one-by-one"
-      },
-      {
-        label: "Reto Nami",
-        to: "/season/2026/reto-nami"
-      }
-    ] satisfies DropdownMenuItem[]
-  },
-  {
-    label: "Gallery",
-    to: "/gallery"
-  },
-  {
-    label: "Comunidad",
-    to: "https://comunidad.jimtracker.com",
-    target: "_blank"
-  }
-];
 
 const config = useRuntimeConfig();
 const buildInfo = config.public.buildInfo;
@@ -71,68 +12,32 @@ const timeAgo = useTimeAgoIntl(buildInfo.time, {
 </script>
 
 <template>
-  <div id="layout">
-    <UHeader
-      class="border-0 backdrop-blur-sm border-b border-default/75 bg-elevated/20 shadow-sm"
-      title="JimTracker"
-      toggle-side="left"
-      :ui="{
-        root: 'lg:h-auto relative',
-        container: 'lg:px-3 lg:py-1 mx-0 max-w-full',
-        title: 'lg:hidden block',
-        center: 'md:flex',
-        right: 'hidden',
-      }"
-    >
-      <UNavigationMenu
-        :items="pages"
-        color="neutral"
-        :ui="{
-          list: 'gap-2',
-          link: 'text-md hover:before:bg-accented/50 data-active:before:bg-accented/75 before:border before:border-accented/50 before:bg-elevated/20 px-3 py-1',
-          linkLabel: 'my-0.5',
-          linkLeadingIcon: 'my-1',
-        }"
-      >
-        <template
-          v-for="page in pages.filter((p) => p.slot)"
-          :key="page.slot"
-          #[page.slot!]="{ item }: { item: NavigationMenuItem & { items?: DropdownMenuItem[] } }"
-        >
-          <UDropdownMenu :content="item.content" :items="item.items" :modal="false">
-            <UButton
-              :label="item.label"
-              trailing-icon="lucide:chevron-down"
-              variant="link"
-              color="neutral"
-              :ui="{
-                base: 'text-md px-0 py-0 w-full h-full my-0.5',
-              }"
-            />
-          </UDropdownMenu>
-        </template>
-      </UNavigationMenu>
-      <template #body>
-        <UNavigationMenu
-          :items="pages.map(page => ({ ...page, children: page.items }))"
-          orientation="vertical"
-          color="neutral"
-          class="-mx-2.5"
-        />
-      </template>
-    </UHeader>
-    <div class="relative">
+  <div id="layout" class="flex flex-col min-h-screen items-center *:w-full">
+    <SiteHeader />
+    <div class="relative grow max-w-screen">
       <img class="absolute top-0 inset-s-0 w-40 md:w-60 p-2 pointer-events-none select-none -z-1" src="/images/corner.png">
       <img class="absolute top-0 inset-e-0 w-40 md:w-60 p-2 rotate-y-180 pointer-events-none select-none -z-1" src="/images/corner.png">
       <div class="lg:container mx-auto py-5 px-2">
         <slot />
       </div>
     </div>
-    <UFooter class="border-t border-default">
+    <UFooter id="footer" :ui="{ top: 'p-0!', center: 'm-0!', container: 'pt-7.5! bg-elevated' }">
+      <template #top>
+        <USeparator
+          color="primary"
+          class="-mb-3.5"
+          :avatar="{
+            src: SITE.logo,
+            alt: SITE.main,
+            size: 'sm',
+            ui: { image: 'light:invert' },
+          }"
+        />
+      </template>
       <template #left>
         <div class="flex flex-col gap-2 lg:gap-1 lg:text-left text-center">
           <div class="flex flex-col lg:flex-row items-center gap-2">
-            <p class="text-sm">{{ SITE.name }} © {{ new Date().getFullYear() }}</p>
+            <p class="text-sm">{{ SITE.name }} · {{ SITE.main }} © {{ new Date().getFullYear() }}</p>
             <UPopover mode="hover" :content="{ side: 'top' }" arrow>
               <NuxtLink :to="`${SITE.github.repository}/commit/${buildInfo.commit}`" target="_blank">
                 <UBadge
@@ -149,7 +54,7 @@ const timeAgo = useTimeAgoIntl(buildInfo.time, {
             </UPopover>
           </div>
           <p class="text-muted text-sm max-w-150 lg:max-w-full">
-            JimTracker no está respaldado por Riot Games y no refleja las opiniones o puntos de vista de Riot Games ni de nadie involucrado oficialmente en la producción o gestión de League of Legends.
+            {{ SITE.name }} ({{ SITE.main }}) no está respaldado por Riot Games y no refleja las opiniones o puntos de vista de Riot Games ni de nadie involucrado oficialmente en la producción o gestión de League of Legends.
           </p>
         </div>
       </template>

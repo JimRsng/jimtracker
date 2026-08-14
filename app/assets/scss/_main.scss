@@ -1,4 +1,6 @@
 :root {
+  scrollbar-width: auto;
+  scroll-behavior: smooth;
   background-color: var(--ui-color-neutral-100);
 }
 
@@ -33,6 +35,11 @@ html, body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.font-bebas {
+  font-family: 'Bebas Neue', Courier, monospace;
 }
 
 img {
@@ -68,4 +75,13 @@ a.router-link-exact-active.nav-link {
   background-color: rgb(255 255 255 / 10%);
   border: 1px solid rgb(255 255 255 / 6%);
   border-radius: 4px;
+}
+
+.nuxt-loading-indicator {
+  background: repeating-linear-gradient(to right, var(--ui-primary) 0%, var(--ui-primary) 50%, var(--ui-bg) 100%)!important;
+  box-shadow: 0 0 10px rgb(255 255 255 / 50%);
+}
+
+.stroke-accented {
+  stroke: var(--ui-bg-accented);
 }

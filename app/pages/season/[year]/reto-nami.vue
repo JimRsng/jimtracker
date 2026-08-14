@@ -213,7 +213,7 @@ const lpChangeClass = (value: number) => {
 
                 <div v-if="index < group.matches.length - 1" class="relative">
                   <div v-if="group.matches[index + 1]?.lcs" class="absolute md:-top-6 top-0 md:right-0 -right-6">
-                    <UPopover mode="hover">
+                    <UPopover mode="hover" arrow>
                       <UButton variant="link" class="p-0">
                         <img src="/images/lol/lcs-logo.png" alt="LCS" class="size-5" width="32" height="32">
                       </UButton>
@@ -228,6 +228,7 @@ const lpChangeClass = (value: number) => {
                     <UPopover
                       v-if="group.matches[index + 1]!.championId === 267 || group.matches[index + 1]!.championId === 161"
                       mode="hover"
+                      arrow
                     >
                       <UButton variant="link" class="p-0">
                         <img :src="getChampionImage(267)" alt="Nami" class="size-5 rounded-sm border-2 border-slate-400/40">
@@ -245,7 +246,7 @@ const lpChangeClass = (value: number) => {
                     </UPopover>
                   </div>
                   <div v-else-if="group.matches[index + 1]?.isFreePick" class="absolute md:-top-6 top-0 md:right-0 -right-6">
-                    <UPopover mode="hover">
+                    <UPopover mode="hover" arrow>
                       <UButton variant="link" class="p-0">
                         <Icon
                           name="lol:fill"
@@ -276,7 +277,7 @@ const lpChangeClass = (value: number) => {
                     v-if="groupedJourney[groupIndex + 1]?.matches[0]?.championId === 161"
                     class="absolute md:-top-6 top-0 md:right-0 -right-6"
                   >
-                    <UPopover mode="hover">
+                    <UPopover mode="hover" arrow>
                       <UButton variant="link" class="p-0">
                         <img :src="getChampionImage(267)" alt="Nami" class="size-5 rounded-sm border-2 border-slate-400/40">
                         <Icon
@@ -293,7 +294,7 @@ const lpChangeClass = (value: number) => {
                     </UPopover>
                   </div>
                   <div v-else-if="groupedJourney[groupIndex + 1]?.matches[0]?.isFreePick" class="absolute md:-top-6 top-0 md:right-0 -right-6">
-                    <UPopover mode="hover">
+                    <UPopover mode="hover" arrow>
                       <UButton variant="link" class="p-0">
                         <Icon
                           name="lol:fill"
@@ -308,7 +309,7 @@ const lpChangeClass = (value: number) => {
                       </template>
                     </UPopover>
                   </div>
-                  <UPopover mode="hover">
+                  <UPopover mode="hover" arrow>
                     <UButton variant="link" class="p-0">
                       <Icon
                         name="tabler:circle-filled"
