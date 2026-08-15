@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const subHeader = defineModel("subHeader", { type: Boolean, default: false });
-const pointerEvents = defineModel("pointerEvents", { type: Boolean, default: false });
+const subHeader = ref(false);
+const pointerEvents = ref(false);
 
 const toggleSubHeader = () => {
   subHeader.value = !subHeader.value;
@@ -36,4 +36,10 @@ const toggleSubHeader = () => {
       @click="toggleSubHeader"
     />
   </div>
+  <span
+    class="sticky top-14 z-50 *:transition-all *:duration-200"
+    :class="[subHeader ? '*:top-14 *:h-12' : '*:h-0 *:-z-1 *:opacity-0', { 'pointer-events-none': !pointerEvents }]"
+  >
+    <slot />
+  </span>
 </template>

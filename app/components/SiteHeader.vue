@@ -1,12 +1,8 @@
 <script setup lang="ts">
 const { pages: navPages, bodyPages } = await useNavbar();
-
-const subHeader = ref(false);
-const pointerEvents = ref(false);
 </script>
 
 <template>
-  <SiteHeaderToggler v-model:sub-header="subHeader" v-model:pointer-events="pointerEvents" />
   <UHeader>
     <template #title>
       <div class="flex items-center gap-2">
@@ -47,21 +43,19 @@ const pointerEvents = ref(false);
       />
     </template>
   </UHeader>
-  <UHeader
-    class="transition-all duration-200"
-    :class="[subHeader ? 'top-14 h-12' : 'h-0 -z-1 opacity-0', { 'pointer-events-none': !pointerEvents }]"
-    :toggle="false"
-  >
-    <UNavigationMenu
-      :items="bodyPages.apps?.find(item => item.label === SITE.name)?.children || []"
-      variant="link"
-      arrow
-    />
+  <SiteHeaderToggler>
+    <UHeader :toggle="false">
+      <UNavigationMenu
+        :items="bodyPages.apps?.find(item => item.label === SITE.name)?.children || []"
+        variant="link"
+        arrow
+      />
 
-    <template #title>
-      <div class="flex items-center gap-2">
-        <h2>{{ SITE.name }}</h2>
-      </div>
-    </template>
-  </UHeader>
+      <template #title>
+        <div class="flex items-center gap-2">
+          <h2>{{ SITE.name }}</h2>
+        </div>
+      </template>
+    </UHeader>
+  </SiteHeaderToggler>
 </template>
