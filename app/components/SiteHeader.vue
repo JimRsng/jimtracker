@@ -43,7 +43,7 @@ const { pages: navPages, bodyPages } = await useNavbar();
       />
     </template>
   </UHeader>
-  <UHeader class="top-16 h-8" :toggle="false">
+  <UHeader class="top-14 h-8" :toggle="false">
     <UNavigationMenu
       :items="bodyPages.apps?.find(item => item.label === SITE.name)?.children || []"
       variant="link"
