@@ -1,9 +1,9 @@
 <script setup lang="ts">
-const subHeader = ref(false);
+const showHeader = ref(false);
 const pointerEvents = ref(false);
 
 const toggleSubHeader = () => {
-  subHeader.value = !subHeader.value;
+  showHeader.value = !showHeader.value;
   if (pointerEvents.value) {
     pointerEvents.value = false;
     return;
@@ -12,33 +12,35 @@ const toggleSubHeader = () => {
     pointerEvents.value = true;
   }, 600);
 };
+
+const icon = computed(() => showHeader.value ? "lucide:chevron-up" : "lucide:chevron-down");
 </script>
 
 <template>
   <div
-    class="fixed justify-center z-1 transition-all lg:flex hidden duration-300"
-    :class="subHeader ? 'top-24.5 hover:top-26' : 'top-12.5 hover:top-14'"
+    class="fixed flex justify-center z-1 transition-all duration-300"
+    :class="showHeader ? 'top-24.5 hover:top-26' : 'top-12.5 hover:top-14'"
   >
-    <UButton
-      v-if="subHeader"
-      class="rounded-t-none rounded-b-full"
-      icon="lucide:chevron-up"
-      :ui="{ base: 'py-0 px-3 hover:bg-primary' }"
-      size="sm"
-      @click="toggleSubHeader"
-    />
-    <UButton
-      v-else
-      class="rounded-t-none rounded-b-full"
-      icon="lucide:chevron-down"
-      :ui="{ base: 'py-0 px-3 hover:bg-primary' }"
-      size="sm"
-      @click="toggleSubHeader"
-    />
+    <div class="group">
+      <UButton
+        class="absolute rounded-t-none rounded-b-full opacity-50 -z-1"
+        :class="{ 'animate-ping': !showHeader }"
+        :icon="icon"
+        :ui="{ base: 'py-0 px-3' }"
+        size="sm"
+      />
+      <UButton
+        class="relative rounded-t-none rounded-b-full"
+        :icon="icon"
+        :ui="{ base: 'py-0 px-3 hover:bg-primary' }"
+        size="sm"
+        @click="toggleSubHeader"
+      />
+    </div>
   </div>
   <span
     class="sticky top-14 z-50 *:transition-all *:duration-200"
-    :class="[subHeader ? '*:top-14 *:h-12' : '*:h-0 *:-z-1 *:opacity-0', { 'pointer-events-none': !pointerEvents }]"
+    :class="[showHeader ? '*:top-14 *:h-12' : '*:h-0 *:-z-1 *:opacity-0', { 'pointer-events-none': !pointerEvents }]"
   >
     <slot />
   </span>
