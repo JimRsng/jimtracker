@@ -153,8 +153,8 @@ export default defineNuxtConfig({
 
   fonts: {
     families: [
-      { name: "Bebas Neue", weights: [400], display: "swap" },
-      { name: "DM Sans", weights: [300, 400, 500, 600], display: "swap" }
+      { name: "Bebas Neue", weights: [400], display: "swap", global: true, preload: true },
+      { name: "DM Sans", weights: [300, 400, 500, 600], display: "swap", global: true }
     ]
   },
 
