@@ -17,11 +17,11 @@ const icon = computed(() => showHeader.value ? "lucide:chevron-up" : "lucide:che
 </script>
 
 <template>
-  <div
-    class="fixed lg:flex hidden justify-center z-1 transition-all duration-300"
-    :class="showHeader ? 'top-24.5 hover:top-25.5' : 'top-12.5 hover:top-13.5'"
-  >
-    <div class="group">
+  <div class="lg:flex hidden justify-center z-1">
+    <div
+      class="fixed transition-all duration-300 group"
+      :class="showHeader ? 'top-24.5 hover:top-25.5' : 'top-12.5 hover:top-13.5'"
+    >
       <UButton
         class="absolute rounded-t-none rounded-b-full opacity-50 -z-1"
         :class="{ 'animate-ping': !showHeader }"
