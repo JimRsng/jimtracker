@@ -25,17 +25,24 @@ const icon = computed(() => showHeader.value ? "lucide:chevron-up" : "lucide:che
       <UButton
         class="absolute rounded-t-none rounded-b-full opacity-50 -z-1"
         :class="{ 'animate-ping': !showHeader }"
-        :icon="icon"
         :ui="{ base: 'py-0 px-3' }"
         size="sm"
-      />
+      >
+        <template #leading>
+          <span class="size-4" />
+        </template>
+      </UButton>
       <UButton
-        class="relative rounded-t-none rounded-b-full"
-        :icon="icon"
+        class="rounded-t-none rounded-b-full"
+
         :ui="{ base: 'py-0 px-3 hover:bg-primary' }"
         size="sm"
         @click="toggleSubHeader"
-      />
+      >
+        <template #leading>
+          <UIcon :key="icon" :name="icon" class="size-4" />
+        </template>
+      </UButton>
     </div>
   </div>
   <span
