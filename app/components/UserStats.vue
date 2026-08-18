@@ -60,7 +60,7 @@ const championStats = [
 </script>
 
 <template>
-  <div class="md:place-items-center">
+  <div class="md:flex md:justify-center">
     <div class="space-y-4 mb-5">
       <div class="grid grid-cols-2 gap-2 md:gap-4">
         <!-- COUNTDOWN FIN DE TEMPORADA -->
