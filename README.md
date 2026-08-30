@@ -21,7 +21,8 @@ NUXT_CDN_TOKEN=
 ```
 
 ## Screenshot
-<img width="1919" height="1350" alt="image" src="https://github.com/user-attachments/assets/b4147b0e-7521-4fc4-831b-56b32cbe8fdd" />
+
+<img width="1920" height="2237" alt="image" src="https://github.com/user-attachments/assets/5173ba20-07e9-4cb7-a50b-b4f4e0ea061f" />
 
 ## Tech stack
 
